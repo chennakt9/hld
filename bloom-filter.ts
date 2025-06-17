@@ -1,16 +1,22 @@
+export {}
+
 class BloomFilter {
-  constructor(size) {
+  private size: number;
+  private bitArray: number[];
+  private hashFunctions: ((item: string) => number)[];
+
+  constructor(size: number) {
     this.size = size;
     this.bitArray = new Array(size).fill(0);
 
     this.hashFunctions = [
-      (item) => this.hash(item, 17),
-      (item) => this.hash(item, 31),
-      (item) => this.hash(item, 101)
+      (item: string) => this.hash(item, 17),
+      (item: string) => this.hash(item, 31),
+      (item: string) => this.hash(item, 101)
     ];
   }
 
-  hash(item, seed) {
+  private hash(item: string, seed: number): number {
     let hash = 0;
     for (let i = 0; i < item.length; i++) {
       hash = (hash * seed + item.charCodeAt(i)) % this.size;
@@ -18,33 +24,33 @@ class BloomFilter {
     return hash;
   }
 
-  add(item) {
+  public add(item: string): void {
     this.hashFunctions.forEach(fn => {
       const index = fn(item);
       this.bitArray[index] = 1;
     });
   }
 
-  contains(item) {
+  public contains(item: string): boolean {
     return this.hashFunctions.every(fn => this.bitArray[fn(item)] === 1);
   }
 
-  printBitArray() {
+  public printBitArray(): void {
     console.log("Bit Array: " + this.bitArray.join(''));
   }
 }
 
 // 🚀 Driver Code
-function runBloomFilterDemo() {
+function runBloomFilterDemo(): void {
   const bloom = new BloomFilter(50);
 
-  const existingEmails = [
+  const existingEmails: string[] = [
     "pravalika@example.com",
     "chenna@weirdmail.com",
     "batman@gotham.com"
   ];
 
-  const testEmails = [
+  const testEmails: string[] = [
     "pravalika@example.com",   // ✅ should be true
     "notfound@ghost.com",      // ❌ probably false
     "batman@gotham.com",       // ✅ should be true
