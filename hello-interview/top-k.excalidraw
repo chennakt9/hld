@@ -1,0 +1,52 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "https://excalidraw.com",
+  "elements": [
+    {
+      "id": "2nPR4351UKCOAFzXwXFLX",
+      "type": "text",
+      "x": 683.375,
+      "y": 1046.08984375,
+      "width": 662.67138671875,
+      "height": 600,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "a0",
+      "roundness": null,
+      "seed": 1323685173,
+      "version": 64,
+      "versionNonce": 1340061819,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1752655043127,
+      "link": null,
+      "locked": false,
+      "text": "Redis solution\n- topk:hourly:${now.toISOString()}\n- topk:daily:${now.toISOString().split('T')[0]}\n- topk:alltime\n\nasync incrementItem(item) {\n    const keys = [\n      getHourlyKey(),\n      getDailyKey(),\n      getAllTimeKey()\n    ];\n\n    for (const key of keys) {\n      await this.redis.zincrby(key, 1, item); // increament for all keys\n\n      // Optional: Expire hourly after 2 hours, daily after 2 days\n      if (key.includes('hourly')) await this.redis.expire(key, 2 * 60 * 60); // 2hr\n      if (key.includes('daily')) await this.redis.expire(key, 2 * 24 * 60 * 60); // 2 days\n    }\n  }\n\nasync getTopK(timeRange = 'alltime', k = 5) {\n    let key;\n\n    if (timeRange === 'hour') key = getHourlyKey();\n    else if (timeRange === 'day') key = getDailyKey();\n    else key = getAllTimeKey();\n\n    return await this.redis.zrevrange(key, 0, k - 1, 'WITHSCORES');\n  }",
+      "fontSize": 16,
+      "fontFamily": 5,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Redis solution\n- topk:hourly:${now.toISOString()}\n- topk:daily:${now.toISOString().split('T')[0]}\n- topk:alltime\n\nasync incrementItem(item) {\n    const keys = [\n      getHourlyKey(),\n      getDailyKey(),\n      getAllTimeKey()\n    ];\n\n    for (const key of keys) {\n      await this.redis.zincrby(key, 1, item); // increament for all keys\n\n      // Optional: Expire hourly after 2 hours, daily after 2 days\n      if (key.includes('hourly')) await this.redis.expire(key, 2 * 60 * 60); // 2hr\n      if (key.includes('daily')) await this.redis.expire(key, 2 * 24 * 60 * 60); // 2 days\n    }\n  }\n\nasync getTopK(timeRange = 'alltime', k = 5) {\n    let key;\n\n    if (timeRange === 'hour') key = getHourlyKey();\n    else if (timeRange === 'day') key = getDailyKey();\n    else key = getAllTimeKey();\n\n    return await this.redis.zrevrange(key, 0, k - 1, 'WITHSCORES');\n  }",
+      "autoResize": true,
+      "lineHeight": 1.25
+    }
+  ],
+  "appState": {
+    "gridSize": 20,
+    "gridStep": 5,
+    "gridModeEnabled": false,
+    "viewBackgroundColor": "#ffffff",
+    "lockedMultiSelections": {}
+  },
+  "files": {}
+}
