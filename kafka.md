@@ -62,3 +62,4 @@ Kafka was the first log-based pub/sub system that:
 - Main use case is 1 P -> N C.
 - Each CG will maintain their own offsets. You can imagine this as Each CG will get a copy of the topic.
 - ex: billing_events topic is consumed by SEP service, data team service, entitlements service etc..
+- rule of thumb: consumers with same code below to same consumer group. ex: multiple ecs task containers of same service will belong to same consumer-group because they have same code.
