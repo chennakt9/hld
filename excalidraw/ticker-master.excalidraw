@@ -1,7 +1,7 @@
 {
   "type": "excalidraw",
   "version": 2,
-  "source": "https://excalidraw.com",
+  "source": "https://marketplace.visualstudio.com/items?itemName=pomdtr.excalidraw-editor",
   "elements": [
     {
       "id": "u-OyN4ENwgjlCXGTXglCr",
@@ -2163,14 +2163,50 @@
       "startArrowhead": "arrow",
       "endArrowhead": "arrow",
       "elbowed": false
+    },
+    {
+      "id": "i1YtPQwYUOrVcnqcb4hbR",
+      "type": "text",
+      "x": 435.247182655335,
+      "y": 2347.066406250001,
+      "width": 517.12646484375,
+      "height": 49.58333333333303,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "ay",
+      "roundness": null,
+      "seed": 851362532,
+      "version": 65,
+      "versionNonce": 150652380,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1766893747087,
+      "link": null,
+      "locked": false,
+      "text": "Note:\nWe can use delayed queue also to handle this locking ",
+      "fontSize": 19.83333333333321,
+      "fontFamily": 5,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Note:\nWe can use delayed queue also to handle this locking ",
+      "autoResize": true,
+      "lineHeight": 1.25
     }
   ],
   "appState": {
     "gridSize": 20,
     "gridStep": 5,
     "gridModeEnabled": false,
-    "viewBackgroundColor": "#ffffff",
-    "lockedMultiSelections": {}
+    "viewBackgroundColor": "#ffffff"
   },
   "files": {}
 }
